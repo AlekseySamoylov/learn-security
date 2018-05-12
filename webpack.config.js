@@ -39,6 +39,15 @@ module.exports = {
                     sourceMap: true
                 }
             }]
+        }, {
+            test: /\.css$/,
+            use: [
+                {loader: 'style-loader'},
+                {loader: 'css-loader'}
+            ],
         }]
+    },
+    resolve: {
+        extensions: [".jsx", ".js"]
     }
 };
