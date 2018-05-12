@@ -1,0 +1,19 @@
+server:
+  port: 18080
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:25432/learn
+    username: learn
+    password: sql
+  data:
+    rest:
+      base-path: /api
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+    open-in-view: false
+custom-error-controller:
+  debug: true
