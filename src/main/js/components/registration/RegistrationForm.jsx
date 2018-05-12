@@ -10,20 +10,24 @@ export class RegistrationForm extends Component {
         return (
             <div>
                 <Grid>
-
                     <form id="myForm">
                         <FormGroup>
-                            <ControlLabel htmlFor="phrase">Enter phrase in Russian</ControlLabel>
-                            <FormControl id="phrase" name="phrase" type="text"
-                                         value={this.state.phrase}
+                            <ControlLabel htmlFor="email">Enter Email</ControlLabel>
+                            <FormControl id="email" name="email" type="email"
+                                         value={this.state.email}
                                          onChange={this.handlePhraseChange}
                             />
-                            <ControlLabel htmlFor="translation">Enter translation in English</ControlLabel>
-                            <FormControl id="translation" name="translation" type="text"
-                                         value={this.state.translation}
+                            <ControlLabel htmlFor="name">Enter Name</ControlLabel>
+                            <FormControl id="name" name="name" type="name"
+                                         value={this.state.name}
                                          onChange={this.handleTranslationChange}
                             />
-                            <Button onClick={this.handleSubmit}>Send data!</Button>
+                            <ControlLabel htmlFor="password">Enter Password</ControlLabel>
+                            <FormControl id="password" name="password" type="password"
+                                         value={this.state.password}
+                                         onChange={this.handleTranslationChange}
+                            />
+                            <Button onClick={this.handleSubmit}>Registration!</Button>
                         </FormGroup>
 
                     </form>

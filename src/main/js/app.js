@@ -1,16 +1,17 @@
-import React, {Component} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import UserTable from './components/users/UserTable';
+import {BrowserRouter as Router} from "react-router-dom";
+import UIRouter from './router/UIRouter';
 
-class App extends Component {
-    render() {
-        return (
-            <UserTable/>
-        )
-    }
+const browserHistory = Router.browserHistory;
+
+
+function loadApplication() {
+    ReactDOM.hydrate(
+        <Router history={browserHistory}>
+            <UIRouter/>
+        </Router>,
+        document.getElementById('react'));
 }
 
-ReactDOM.render(
-    <App/>,
-    document.getElementById('react')
-);
+loadApplication();
