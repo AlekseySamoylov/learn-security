@@ -2,7 +2,7 @@
   "name": "learn-security",
   "version": "0.0.0",
   "scripts": {
-    "build": "webpack --config webpack.config.js --watch",
+    "build": "webpack --config webpack.config.dev.js --watch",
     "build-prod": "webpack --config webpack.config.js",
     "start": "nodemon temporary-server/server.js"
   },
