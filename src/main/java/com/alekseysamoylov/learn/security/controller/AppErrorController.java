@@ -19,6 +19,9 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.alekseysamoylov.learn.security.model.ErrorJson;
 
+import springfox.documentation.annotations.ApiIgnore;
+
+@ApiIgnore
 @Controller
 public class AppErrorController implements ErrorController {
 

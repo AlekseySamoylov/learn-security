@@ -14,7 +14,6 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
     List<User> findByName(@Param("name") String name);
 
-    @PreAuthorize("hasRole('ADMIN')")
     @Override
     <S extends User> S save(S user);
 

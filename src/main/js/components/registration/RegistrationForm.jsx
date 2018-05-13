@@ -9,12 +9,64 @@ export class RegistrationForm extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
-            email: '',
-            name: '',
-            password: ''
+            user: {
+                email: '',
+                name: '',
+                rawPassword: ''
+            }
         };
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    }
+
+    handleEmailChange(e) {
+        this.setState({
+            user: {
+                email: e.target.value,
+                name: this.state.user.name,
+                rawPassword: this.state.user.rawPassword
+            }
+        });
+    };
+
+    handleNameChange(e) {
+        this.setState({
+            user: {
+                email: this.state.user.email,
+                name: e.target.value,
+                rawPassword: this.state.user.rawPassword
+            }
+        });
+
+    };
+
+    handlePasswordChange(e) {
+        this.setState({
+            user: {
+                email: this.state.user.email,
+                name: this.state.user.name,
+                rawPassword: e.target.value
+            }
+        });
+    };
+
+    handleSubmit() {
+        fetch('/api/user', {
+            method: 'POST',
+            headers: {
+                'Accept': '*/*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state.user)
+        }).then(() => {
+            console.log('success');
+        }).catch(function (error) {
+            console.log(error);
+        });
+
     }
 
     render() {
@@ -26,17 +78,17 @@ export class RegistrationForm extends Component {
                             <ControlLabel htmlFor="email">Enter Email</ControlLabel>
                             <FormControl id="email" name="email" type="email"
                                          value={this.state.email}
-                                         onChange={this.handlePhraseChange}
+                                         onChange={this.handleEmailChange}
                             />
                             <ControlLabel htmlFor="name">Enter Name</ControlLabel>
                             <FormControl id="name" name="name" type="name"
                                          value={this.state.name}
-                                         onChange={this.handleTranslationChange}
+                                         onChange={this.handleNameChange}
                             />
                             <ControlLabel htmlFor="password">Enter Password</ControlLabel>
                             <FormControl id="password" name="password" type="password"
-                                         value={this.state.password}
-                                         onChange={this.handleTranslationChange}
+                                         value={this.state.rawPassword}
+                                         onChange={this.handlePasswordChange}
                             />
                             <br/>
                             <Button onClick={this.handleSubmit}>Registration!</Button>

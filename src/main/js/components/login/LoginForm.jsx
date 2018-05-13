@@ -11,7 +11,6 @@ class LoginForm extends Component {
         return (
             <div>
                 <Grid>
-
                     <form action="/login" method="post">
                         <FormGroup>
                             <ControlLabel htmlFor="username">Username</ControlLabel>
@@ -21,7 +20,6 @@ class LoginForm extends Component {
                             <br/>
                             <Button type="submit">Login</Button>
                         </FormGroup>
-
                     </form>
                 </Grid>
             </div>
