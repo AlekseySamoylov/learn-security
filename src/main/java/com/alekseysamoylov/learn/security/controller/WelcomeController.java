@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class WelcomeController {
 
-    @GetMapping({"/", "/admin", "/registration"})
+    @GetMapping({"/", "/admin", "login", "/registration"})
     public String index() {
         return "index";
     }

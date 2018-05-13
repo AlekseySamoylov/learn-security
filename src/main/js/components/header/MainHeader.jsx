@@ -23,6 +23,11 @@ class MainHeader extends Component {
                         </Link>
                     </Navbar.Brand>
                     <Navbar.Brand>
+                        <a href="/logout">
+                            Logout
+                        </a>
+                    </Navbar.Brand>
+                    <Navbar.Brand>
                         <Link to='/registration'>
                             Registration
                         </Link>

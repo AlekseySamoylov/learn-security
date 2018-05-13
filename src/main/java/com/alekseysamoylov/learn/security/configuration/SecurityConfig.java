@@ -70,10 +70,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
+                .antMatchers("/").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
-                .and().formLogin()
+                .and().formLogin().loginPage("/login")
                 .and().httpBasic()
-                .and().logout()
+                .and().logout().logoutUrl("/logout")
 
                 // CSRF is enabled by default, with Java Config
                 .and().csrf().disable();
