@@ -6,6 +6,17 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Button from 'react-bootstrap/lib/Button';
 
 export class RegistrationForm extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            email: '',
+            name: '',
+            password: ''
+        };
+    }
+
     render() {
         return (
             <div>
@@ -27,9 +38,9 @@ export class RegistrationForm extends Component {
                                          value={this.state.password}
                                          onChange={this.handleTranslationChange}
                             />
+                            <br/>
                             <Button onClick={this.handleSubmit}>Registration!</Button>
                         </FormGroup>
-
                     </form>
                 </Grid>
             </div>

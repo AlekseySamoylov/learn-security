@@ -7,11 +7,13 @@ const browserHistory = Router.browserHistory;
 
 
 function loadApplication() {
+
     ReactDOM.hydrate(
         <Router history={browserHistory}>
             <UIRouter/>
         </Router>,
         document.getElementById('react'));
+
 }
 
 loadApplication();
