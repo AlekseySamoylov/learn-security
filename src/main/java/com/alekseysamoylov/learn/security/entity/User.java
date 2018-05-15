@@ -1,5 +1,8 @@
 package com.alekseysamoylov.learn.security.entity;
 
+import java.io.Serializable;
+import java.security.Principal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +23,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @Entity
 @Table(name = "learn_user")
-public class User {
+public class User implements Principal, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,10 +37,15 @@ public class User {
     @JsonIgnore
     private String password;
 
-    @Column
-    private String name;
+    @Column(name = "NAME")
+    private String firstName;
 
     @Transient
     private String rawPassword;
+
+    @JsonIgnore
+    public String getName() {
+        return email;
+    }
 
 }

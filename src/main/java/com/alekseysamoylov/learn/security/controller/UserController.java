@@ -18,6 +18,6 @@ public class UserController {
 
     @PostMapping
     public User save(@RequestBody User user) {
-        return userService.save(user);
+        return userService.registration(user);
     }
 }

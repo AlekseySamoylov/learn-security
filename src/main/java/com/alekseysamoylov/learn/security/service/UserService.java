@@ -16,11 +16,15 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private UserContext userContext;
+
+    @Autowired
     private SecurityUtil securityUtil;
 
-    public User save(User user) {
+    public User registration(User user) {
         user = securityUtil.encodeUserPassword(user);
         user = userRepository.save(user);
+        userContext.setCurrentUser(user);
         return user;
     }
 }

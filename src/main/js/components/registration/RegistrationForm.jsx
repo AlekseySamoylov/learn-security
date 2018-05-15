@@ -12,7 +12,7 @@ export class RegistrationForm extends Component {
         this.state = {
             user: {
                 email: '',
-                name: '',
+                firstName: '',
                 rawPassword: ''
             }
         };
@@ -26,7 +26,7 @@ export class RegistrationForm extends Component {
         this.setState({
             user: {
                 email: e.target.value,
-                name: this.state.user.name,
+                firstName: this.state.user.firstName,
                 rawPassword: this.state.user.rawPassword
             }
         });
@@ -36,7 +36,7 @@ export class RegistrationForm extends Component {
         this.setState({
             user: {
                 email: this.state.user.email,
-                name: e.target.value,
+                firstName: e.target.value,
                 rawPassword: this.state.user.rawPassword
             }
         });
@@ -47,7 +47,7 @@ export class RegistrationForm extends Component {
         this.setState({
             user: {
                 email: this.state.user.email,
-                name: this.state.user.name,
+                firstName: this.state.user.firstName,
                 rawPassword: e.target.value
             }
         });
@@ -81,8 +81,8 @@ export class RegistrationForm extends Component {
                                          onChange={this.handleEmailChange}
                             />
                             <ControlLabel htmlFor="name">Enter Name</ControlLabel>
-                            <FormControl id="name" name="name" type="name"
-                                         value={this.state.name}
+                            <FormControl id="firstName" name="firstName" type="text"
+                                         value={this.state.firstName}
                                          onChange={this.handleNameChange}
                             />
                             <ControlLabel htmlFor="password">Enter Password</ControlLabel>

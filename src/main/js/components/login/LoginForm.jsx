@@ -13,7 +13,7 @@ class LoginForm extends Component {
                 <Grid>
                     <form action="/login" method="post">
                         <FormGroup>
-                            <ControlLabel htmlFor="username">Username</ControlLabel>
+                            <ControlLabel htmlFor="username">Email</ControlLabel>
                             <FormControl id="username" name="username" type="text"/>
                             <ControlLabel htmlFor="password">Password</ControlLabel>
                             <FormControl id="password" name="password" type="password"/>

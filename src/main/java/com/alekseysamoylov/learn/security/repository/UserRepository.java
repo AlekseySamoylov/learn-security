@@ -12,7 +12,9 @@ import com.alekseysamoylov.learn.security.entity.User;
 @RepositoryRestResource(collectionResourceRel = "users", path = "users")
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
-    List<User> findByName(@Param("name") String name);
+    List<User> findByFirstName(String firstName);
+
+    User findOneByEmail(@Param("email") String email);
 
     @Override
     <S extends User> S save(S user);
