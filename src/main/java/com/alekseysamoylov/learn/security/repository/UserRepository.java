@@ -21,11 +21,11 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
     @PreAuthorize("hasRole('ADMIN')")
     @Override
-    <S extends User> Iterable<S> saveAll(Iterable<S> users);
+    <S extends User> Iterable<S> save(Iterable<S> users);
 
     @PreAuthorize("hasRole('ADMIN')")
     @Override
-    void deleteById(Long var1);
+    void delete(Long var1);
 
     @PreAuthorize("hasRole('ADMIN')")
     @Override
@@ -33,7 +33,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
     @PreAuthorize("hasRole('ADMIN')")
     @Override
-    void deleteAll(Iterable<? extends User> var1);
+    void delete(Iterable<? extends User> var1);
 
     @PreAuthorize("hasRole('ADMIN')")
     @Override
