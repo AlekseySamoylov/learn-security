@@ -54,18 +54,26 @@ export class RegistrationForm extends Component {
     };
 
     handleSubmit() {
-        fetch('/api/user', {
-            method: 'POST',
-            headers: {
-                'Accept': '*/*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.state.user)
-        }).then(() => {
-            console.log('success');
-        }).catch(function (error) {
-            console.log(error);
-        });
+        axios.post('/api/user', this.state.user)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error)
+            });
+        // fetch('/api/user', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Accept': '*/*',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     credentials: 'same-origin',
+        //     body: JSON.stringify(this.state.user)
+        // }).then(() => {
+        //     console.log('success');
+        // }).catch(function (error) {
+        //     console.log(error);
+        // });
 
     }
 
