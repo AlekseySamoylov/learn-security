@@ -9,8 +9,8 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import com.alekseysamoylov.learn.security.authorisation.UserAuthorityUtils;
 import com.alekseysamoylov.learn.security.entity.User;
-import com.alekseysamoylov.learn.security.util.UserAuthorityUtils;
 
 @Component
 public class SpringSecurityUserContext implements UserContext {

@@ -27,4 +27,8 @@ public class UserService {
         userContext.setCurrentUser(user);
         return user;
     }
+
+    public User findUserByEmail(String email) {
+        return userRepository.findOneByEmail(email);
+    }
 }

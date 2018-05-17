@@ -35,7 +35,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication().withUser("user")
                 .password("$2a$10$mrefvevdqVe.xD3fJW5gqenLLJQYdq2LLD5DqAwYpUYusJky1/O8a").roles("USER");
 
-        auth.inMemoryAuthentication().withUser("admin")
+        auth.inMemoryAuthentication().withUser("user@noemail.com")
+                .password("$2a$10$mrefvevdqVe.xD3fJW5gqenLLJQYdq2LLD5DqAwYpUYusJky1/O8a").roles("ADMIN");
+
+        auth.inMemoryAuthentication().withUser("admin2@email.com")
+                .password("$2a$10$mrefvevdqVe.xD3fJW5gqenLLJQYdq2LLD5DqAwYpUYusJky1/O8a").roles("ADMIN");
+
+        auth.inMemoryAuthentication().withUser("admin3@email.com")
                 .password("$2a$10$mrefvevdqVe.xD3fJW5gqenLLJQYdq2LLD5DqAwYpUYusJky1/O8a").roles("ADMIN");
 
         logger.info("***** Password for user 'user1@example.com' is 'secret'");
@@ -69,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/admin/*").access("hasRole('ADMIN')")
+                .antMatchers("/admin/**").access("hasRole('ADMIN')")
                 .and().formLogin().loginPage("/login")
                 .loginProcessingUrl("/login").successForwardUrl("/")
                 .usernameParameter("username")
