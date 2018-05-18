@@ -15,7 +15,8 @@ import org.springframework.stereotype.Component;
 
 import com.alekseysamoylov.learn.security.authorisation.UserAuthorityUtils;
 import com.alekseysamoylov.learn.security.entity.User;
-import com.alekseysamoylov.learn.security.service.UserService;
+import com.alekseysamoylov.learn.security.repository.UserRepository;
+import com.alekseysamoylov.learn.security.util.SecurityUtil;
 
 @Component
 public class LearnUserAuthenticationProvider implements AuthenticationProvider {
@@ -23,32 +24,35 @@ public class LearnUserAuthenticationProvider implements AuthenticationProvider {
     private static final Logger logger = LoggerFactory
             .getLogger(LearnUserAuthenticationProvider.class);
 
-    private final UserService userService;
+    private final UserRepository userRepository;
+    private final SecurityUtil securityUtil;
 
     @Autowired
-    public LearnUserAuthenticationProvider(UserService userService) {
-        if (userService == null) {
+    public LearnUserAuthenticationProvider(UserRepository userRepository, SecurityUtil securityUtil) {
+        if (userRepository == null) {
             throw new IllegalArgumentException("calendarService cannot be null");
         }
-        this.userService = userService;
+        this.userRepository = userRepository;
+        this.securityUtil = securityUtil;
     }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         DomainUsernamePasswordAuthenticationToken token = (DomainUsernamePasswordAuthenticationToken) authentication;
-        String userName = token.getName();
+        String email = token.getName();
         String domain = token.getDomain();
-        String email = userName + "@" + domain;
+        if (domain != null) {
+            email += "@" + domain;
+        }
 
-//        CalendarUser user = email == null ? null : calendarService.findUserByEmail(email);
-        User user = userService.findUserByEmail(email);
+        User user = userRepository.findOneByEmail(email);
         logger.info("learUser: {}", user);
 
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username/password");
         }
         String password = user.getPassword();
-        if (!password.equals(token.getCredentials())) {
+        if (!securityUtil.matchPasswords((String) token.getCredentials(), password)) {
             throw new BadCredentialsException("Invalid username/password");
         }
         Collection<? extends GrantedAuthority> authorities = UserAuthorityUtils.createAuthorities(user);
