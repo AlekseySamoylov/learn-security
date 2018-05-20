@@ -17,6 +17,13 @@ module.exports = {
             },
             exclude: /node_modules/
         }, {
+            test: /\.jsx$/,
+            loader: 'babel-loader',
+            query: {
+                presets: ['env', 'react', 'es2015']
+            },
+            exclude: /node_modules/
+        }, {
             test: /\.(png|jpg|gif)$/,
             use: [{
                 loader: 'url-loader'
