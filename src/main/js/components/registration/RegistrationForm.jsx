@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import Grid from 'react-bootstrap/lib/Grid';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
@@ -56,7 +57,7 @@ export class RegistrationForm extends Component {
     handleSubmit() {
         axios.post('/api/user', this.state.user)
             .then(response => {
-                console.log(response);
+                document.location.href = "/";
             })
             .catch(error => {
                 console.log(error)

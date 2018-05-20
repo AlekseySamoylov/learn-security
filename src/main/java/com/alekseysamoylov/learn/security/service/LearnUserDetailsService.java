@@ -11,9 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import com.alekseysamoylov.learn.security.authorisation.UserAuthorityUtils;
 import com.alekseysamoylov.learn.security.entity.User;
 import com.alekseysamoylov.learn.security.repository.UserRepository;
-import com.alekseysamoylov.learn.security.util.UserAuthorityUtils;
 
 @Component
 public class LearnUserDetailsService implements UserDetailsService {
