@@ -1,25 +1,32 @@
 pipeline {
     environment {
-        BUILD_SCRIPTS_GIT = "http://10.100.100.10:7990/scm/~myname/mypipeline.git"
+        BUILD_SCRIPTS_GIT = "https://github.com/AlekseySamoylov/learn-security.git"
         BUILD_SCRIPTS = 'mypipeline'
         BUILD_HOME = '/var/lib/jenkins/workspace'
     }
     agent any
     stages {
-        stage('Checkout: Code') {
+        stage('Compile Stage') {
             steps {
-                sh "mkdir -p $WORKSPACE/repo;\
-                git config-- global user.email 'email@address.com'; \
-                git config-- global user.name 'myname'; \
-                git config-- global push.default simple; \
-                git clone $BUILD_SCRIPTS_GIT repo / $BUILD_SCRIPTS "
-                sh "chmod -R +x $WORKSPACE/repo/$BUILD_SCRIPTS"
+                withMaven(maven: 'maven_3_5_3') {
+                    sh 'mvn clean compile'
+                }
             }
         }
-        stage('Yum: Updates') {
+        stage('Testing Stage') {
             steps {
-                sh "sudo chmod +x $WORKSPACE/repo/$BUILD_SCRIPTS/scripts/update.sh"
-                sh "sudo $WORKSPACE/repo/$BUILD_SCRIPTS/scripts/update.sh"
+                withMaven(maven: 'maven_3_5_3') {
+                    sh 'mvn test'
+                }
+            }
+        }
+
+
+        stage('Deployment stage') {
+            steps {
+                withMaven(maven: 'maven_3_5_3') {
+                    sh 'mvn package'
+                }
             }
         }
     }
