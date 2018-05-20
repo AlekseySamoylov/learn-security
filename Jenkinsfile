@@ -5,10 +5,6 @@ pipeline {
     }
     agent any
     stages {
-        stage('Clone repository') {
-            /* Let's make sure we have the repository cloned to our workspace */
-            checkout scm
-        }
         stage('Compile Stage') {
             steps {
                 withMaven(maven: 'maven_3_5_3') {
@@ -23,38 +19,49 @@ pipeline {
                 }
             }
         }
-        stage('Package stage') {
+        stage('Package Stage') {
             steps {
                 withMaven(maven: 'maven_3_5_3') {
                     sh 'mvn package'
                 }
             }
         }
-        stage('Build image') {
-            /* This builds the actual image; synonymous to
-             * docker build on the command line */
 
-            app = docker.build("alekseysamoylov/learn-security")
-        }
-
-        stage('Test image') {
-            /* Ideally, we would run a test framework against our image.
-             * For this example, we're using a Volkswagen-type approach ;-) */
-
-            app.inside {
-                sh 'echo "Tests passed"'
+        stage ('dockerization') {
+            steps {
+                sh '''
+        docker build -t alekseysamoylov/learn-security .
+        '''
             }
         }
 
-        stage('Push image') {
-            /* Finally, we'll push the image with two tags:
-             * First, the incremental build number from Jenkins
-             * Second, the 'latest' tag.
-             * Pushing multiple tags is cheap, as all the layers are reused. */
-            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-                app.push("${env.BUILD_NUMBER}")
-                app.push("latest")
-            }
-        }
+//        stage('Build Image') {
+//            steps {
+//                script {
+//                    def app = docker.build('alekseysamoylov/learn-security', '--no-cache=true dockerbuild')
+//
+//                }
+//            }
+//        }
+
+//        stage('Test Image') {
+//            /* Ideally, we would run a test framework against our image.
+//             * For this example, we're using a Volkswagen-type approach ;-) */
+//
+//            app.inside {
+//                sh 'echo "Tests passed"'
+//            }
+//        }
+//
+//        stage('Push Image') {
+//            /* Finally, we'll push the image with two tags:
+//             * First, the incremental build number from Jenkins
+//             * Second, the 'latest' tag.
+//             * Pushing multiple tags is cheap, as all the layers are reused. */
+//            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+//                app.push("${env.BUILD_NUMBER}")
+//                app.push("latest")
+//            }
+//        }
     }
 }
