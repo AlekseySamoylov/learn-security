@@ -27,13 +27,13 @@ pipeline {
             }
         }
 
-        stage ('dockerization') {
-            steps {
-                sh '''
-        docker build -t alekseysamoylov/learn-security .
-        '''
-            }
-        }
+//        stage ('dockerization') {
+//            steps {
+//                sh '''
+//        docker build -t alekseysamoylov/learn-security .
+//        '''
+//            }
+//        }
 
 //        stage('Build Image') {
 //            steps {
