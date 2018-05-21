@@ -7,12 +7,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
 
 import com.alekseysamoylov.learn.security.authorisation.UserAuthorityUtils;
 import com.alekseysamoylov.learn.security.entity.User;
 
-@Component
+//@Component
 public class SpringSecurityUserContext implements UserContext {
     @Override
     public User getCurrentUser() {

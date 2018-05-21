@@ -9,16 +9,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.alekseysamoylov.learn.security.entity.User;
 
-@PreAuthorize("hasRole('ADMIN')")
 @RepositoryRestResource(collectionResourceRel = "users", path = "users")
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
     List<User> findByFirstName(String firstName);
 
-    @PreAuthorize("hasRole('IS_AUTHENTICATED_ANONYMOUSLY')")
     User findOneByEmail(@Param("email") String email);
 
-    @PreAuthorize("hasRole('IS_AUTHENTICATED_ANONYMOUSLY')")
     @Override
     <S extends User> S save(S user);
 
