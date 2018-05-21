@@ -27,4 +27,8 @@ public class SecurityUtil {
     private boolean passwordIsCorrect(String password) {
         return password != null && password.length() > 4;
     }
+
+    public boolean matchPasswords(String rawPassword, String encodedPassword) {
+        return passwordEncoder.matches(rawPassword, encodedPassword);
+    }
 }

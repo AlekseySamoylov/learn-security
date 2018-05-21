@@ -9,7 +9,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @Controller
 public class WelcomeController {
 
-    @GetMapping({"/", "/admin", "login", "/registration"})
+    @GetMapping({"/", "/admin", "/login", "/registration"})
     public String index() {
         return "index";
     }

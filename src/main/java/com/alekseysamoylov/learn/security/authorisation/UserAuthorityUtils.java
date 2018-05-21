@@ -1,4 +1,4 @@
-package com.alekseysamoylov.learn.security.util;
+package com.alekseysamoylov.learn.security.authorisation;
 
 import java.util.Collection;
 import java.util.List;
