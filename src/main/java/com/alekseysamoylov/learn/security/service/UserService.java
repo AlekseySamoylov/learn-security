@@ -14,9 +14,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private UserContext userContext;
+//
+//    @Autowired
+//    private UserContext userContext;
 
     @Autowired
     private SecurityUtil securityUtil;
@@ -24,7 +24,7 @@ public class UserService {
     public User registration(User user) {
         user = securityUtil.encodeUserPassword(user);
         user = userRepository.save(user);
-        userContext.setCurrentUser(user);
+//        userContext.setCurrentUser(user);
         return user;
     }
 

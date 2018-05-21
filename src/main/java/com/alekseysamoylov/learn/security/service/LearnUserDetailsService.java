@@ -9,13 +9,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 
 import com.alekseysamoylov.learn.security.authorisation.UserAuthorityUtils;
 import com.alekseysamoylov.learn.security.entity.User;
 import com.alekseysamoylov.learn.security.repository.UserRepository;
 
-@Component
+//@Component
 public class LearnUserDetailsService implements UserDetailsService {
 
     private static final Logger logger = LoggerFactory

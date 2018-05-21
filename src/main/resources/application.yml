@@ -17,6 +17,9 @@ spring:
     open-in-view: false
 custom-error-controller:
   debug: true
+management:
+  security:
+    enabled: false
 logging:
   level:
     org:
