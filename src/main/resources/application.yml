@@ -1,6 +1,9 @@
 server:
   port: 18080
 spring:
+  cloud:
+    bootstrap:
+      enabled: false
   datasource:
     url: jdbc:postgresql://localhost:25432/learn
     username: learn
