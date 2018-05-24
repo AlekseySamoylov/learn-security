@@ -23,8 +23,6 @@ const store = createStore(
     window.devToolsExtension && window.devToolsExtension()
 );
 
-console.log(store.getState());
-
 const updateUserAction = {
     type: 'updateUser',
     payload: {
