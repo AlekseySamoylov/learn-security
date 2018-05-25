@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-
 import {connect} from 'react-redux';
-import {Button, FormControl, FormGroup, Grid} from "react-bootstrap";
-
 import {updateUser} from '../../redux/actions/user-actions';
+import {Button, FormControl, FormGroup, Grid} from "react-bootstrap";
 
 export class Portal extends Component {
 
