@@ -5,6 +5,14 @@ pipeline {
     }
     agent any
     stages {
+        stage('Git checkout') {
+            steps {
+                sh 'git ${env.'
+                withMaven(maven: 'maven_3_5_3') {
+                    sh 'mvn clean compile'
+                }
+            }
+        }
         stage('Compile Stage') {
             steps {
                 withMaven(maven: 'maven_3_5_3') {

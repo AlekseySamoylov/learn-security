@@ -13,6 +13,11 @@ class MainHeader extends Component {
                         </Link>
                     </Navbar.Brand>
                     <Navbar.Brand>
+                        <Link to='/portal'>
+                            Portal
+                        </Link>
+                    </Navbar.Brand>
+                    <Navbar.Brand>
                         <Link to='/admin'>
                             Admin
                         </Link>
