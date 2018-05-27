@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import client from '../../client';
 import UserList from './UserList';
+import {connect} from 'react-redux';
+import {getAllUsers} from '../../redux/actions/admin-actions';
 import './style.css';
 
 class UserTable extends Component {
@@ -10,10 +11,20 @@ class UserTable extends Component {
         this.state = {users: []};
     }
 
+    // Default react method to do something when component is active
+    // componentDidMount() {
+    //     client({method: 'GET', path: '/api/users'}).done(response => {
+    //         this.setState({users: response.entity._embedded.users});
+    //     });
+    // }
+
+    // Default react method to do something when component is active
     componentDidMount() {
-        client({method: 'GET', path: '/api/users'}).done(response => {
-            this.setState({users: response.entity._embedded.users});
-        });
+
+        this.props.onGetAllUsers();
+        // client({method: 'GET', path: '/api/users'}).done(response => {
+        //     this.setState({users: response.entity._embedded.users});
+        // });
     }
 
     render() {
@@ -23,5 +34,13 @@ class UserTable extends Component {
     }
 }
 
-export default UserTable;
+const mapStateToProps = state => ({
+    users: state.users
+});
+
+const mapActionsToProps = {
+    onGetAllUsers: getAllUsers
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(UserTable);
 
