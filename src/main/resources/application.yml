@@ -1,6 +1,9 @@
 server:
   port: 18080
+
 spring:
+  application:
+      name: learn-security
   cloud:
     bootstrap:
       enabled: false
@@ -18,6 +21,12 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
     open-in-view: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
 custom-error-controller:
   debug: true
 management:
